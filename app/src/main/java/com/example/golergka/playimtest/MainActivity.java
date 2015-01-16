@@ -3,6 +3,7 @@ package com.example.golergka.playimtest;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,7 +25,18 @@ public class MainActivity extends ActionBarActivity {
                 return true;
             }
         });
-        mainWebView.loadUrl("http://google.com");
+        mainWebView.loadUrl("http://golergka.github.io/tiltAppServer/");
+        mainWebView.addJavascriptInterface(new Object() {
+            @JavascriptInterface
+            public float getTiltX() {
+                return 0.5f;
+            }
+            @JavascriptInterface
+            public float getTiltY() {
+                return 0.5f;
+            }
+        },
+        "TiltProvider");
     }
 
 
